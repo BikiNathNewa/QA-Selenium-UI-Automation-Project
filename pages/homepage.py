@@ -27,62 +27,62 @@ class homePage:
         #footer
         self.footer_returntotop = (By.XPATH, "/html/body/footer/div/div[1]/div[2]/ul/li[7]/a")
     
-    def openpage(self,url):
+    def openpage(self,url):   #directs to a new webpage by using URL resource
         self.driver.get(url)
         
-    def open_mybooks(self):
+    def open_mybooks(self):   #clicks on my books button present on the navbar
         self.driver.find_element(*self.navbar_mybooks).click()  
              
-    def open_subjects(self):
+    def open_subjects(self):   #clicks on subjects on the navbar drop down menu
         self.driver.find_element(*self.navbar_browse).click()
         time.sleep(1)
         self.driver.find_element(*self.nb_subjects).click()  
  
-    def open_trending(self):
+    def open_trending(self):   #clicks on trending on the navbar drop down menu
         self.driver.find_element(*self.navbar_browse).click()
         time.sleep(1)
         self.driver.find_element(*self.nb_trending).click()  
         
-    def open_libraryexplorer(self):
+    def open_libraryexplorer(self):   #clicks on library explorer on the navbar drop down menu
         self.driver.find_element(*self.navbar_browse).click()
         time.sleep(1)
         self.driver.find_element(*self.nb_libraryexplorer).click()  
 
-    def open_lists(self):
+    def open_lists(self):   #clicks on lists on the navbar drop down menu
         self.driver.find_element(*self.navbar_browse).click()
         time.sleep(1)
         self.driver.find_element(*self.nb_lists).click()  
         
-    def open_collections(self):
+    def open_collections(self):   #clicks on collections on the navbar drop down menu
         self.driver.find_element(*self.navbar_browse).click()
         time.sleep(1)
         self.driver.find_element(*self.nb_collections).click()  
 
-    def open_k12(self):
+    def open_k12(self):   #clicks on k-12 student library on the navbar drop down menu
         self.driver.find_element(*self.navbar_browse).click()
         time.sleep(1)
         self.driver.find_element(*self.nb_k12).click()  
 
-    def open_booktalks(self):
+    def open_booktalks(self):   #clicks on book talks on the navbar drop down menu
         self.driver.find_element(*self.navbar_browse).click()
         time.sleep(1)
         self.driver.find_element(*self.nb_booktalks).click()     
         
-    def open_randombook(self):
+    def open_randombook(self):   #clicks on random book on the navbar drop down menu
         self.driver.find_element(*self.navbar_browse).click()
         time.sleep(1)
         self.driver.find_element(*self.nb_randombook).click()  
         
-    def open_advancedsearch(self):
+    def open_advancedsearch(self):   #clicks on advanced search on the navbar drop down menu
         self.driver.find_element(*self.navbar_browse).click()
         time.sleep(1)
         self.driver.find_element(*self.nb_advancedsearch).click()      
     
-    def login(self):
+    def login(self):   #clicks on login button in the navbar
         self.driver.find_element(*self.navbar_login).click()
         
-    def returntotop(self):
+    def returntotop(self):   #clicks on the return to top footer element
         self.driver.find_element(*self.footer_returntotop).click()
 
-    def openlib(self):
+    def openlib(self):   #clicks on open library logo on the navbar which redirects to homepage
         self.driver.find_element(*self.navbar_openlib).click()

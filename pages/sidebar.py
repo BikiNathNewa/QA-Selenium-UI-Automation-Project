@@ -30,92 +30,96 @@ class sidebarPage:
         self.librarian_portal = (By.XPATH, "/html/body/header[1]/div[3]/details/div[2]/ul/li[22]/a")
     
     #functions    
-    def side_mybooks(self):
+    #my open library category
+    def side_mybooks(self):   #clicking on my books on the sidebar
         self.driver.find_element(*self.sidebar_button).click()
         time.sleep(1)
         self.driver.find_element(*self.mybooks).click()  
             
-    def side_profile(self):
+    def side_profile(self):   #clicking on my profile on the sidebar
         self.driver.find_element(*self.sidebar_button).click()
         time.sleep(1)
         self.driver.find_element(*self.profile).click()
                 
-    def side_settings(self):
+    def side_settings(self):  #clicking on settings on the sidebar
         self.driver.find_element(*self.sidebar_button).click()
         time.sleep(1)
         self.driver.find_element(*self.settings).click()
                 
-    def side_logout(self):
+    def side_logout(self):   #clicking on logout button on the sidebar
         self.driver.find_element(*self.sidebar_button).click()
         time.sleep(1)
         self.driver.find_element(*self.logout).click()
-                
-    def side_subjects(self):
+
+    #browse category
+    def side_subjects(self):   #clicking on subjects on the sidebar
         self.driver.find_element(*self.sidebar_button).click()
         time.sleep(1)
         self.driver.find_element(*self.subjects).click()
                 
-    def side_trending(self):
+    def side_trending(self):   #clicking on trending on the sidebar
         self.driver.find_element(*self.sidebar_button).click()
         time.sleep(1)
         self.driver.find_element(*self.trending).click()
                 
-    def side_libexplorer(self):
+    def side_libexplorer(self): #clicking on library explorer on the sidebar
         self.driver.find_element(*self.sidebar_button).click()
         time.sleep(1)
         self.driver.find_element(*self.libexplorer).click()
                 
-    def side_lists(self):
+    def side_lists(self):   #clicking on lists on the sidebar
         self.driver.find_element(*self.sidebar_button).click()
         time.sleep(1)
         self.driver.find_element(*self.lists).click()
                 
-    def side_collections(self):
+    def side_collections(self):   #clicking on collections on the sidebar
         self.driver.find_element(*self.sidebar_button).click()
         time.sleep(1)
         self.driver.find_element(*self.collections).click()
                 
-    def side_k12(self):
+    def side_k12(self):   #clicking on k-12 student library on the sidebar
         self.driver.find_element(*self.sidebar_button).click()
         time.sleep(1)
         self.driver.find_element(*self.k12).click()
                 
-    def side_booktalks(self):
+    def side_booktalks(self):   #clicking on book talks on the sidebar
         self.driver.find_element(*self.sidebar_button).click()
         time.sleep(1)
         self.driver.find_element(*self.booktalks).click()
                 
-    def side_randombook(self):
+    def side_randombook(self):   #clicking on random book on the sidebar
         self.driver.find_element(*self.sidebar_button).click()
         time.sleep(1)
         self.driver.find_element(*self.randombook).click()
                 
-    def side_advancedsearch(self):
+    def side_advancedsearch(self):   #clicking on advanced search on the sidebar
         self.driver.find_element(*self.sidebar_button).click()
         time.sleep(1)
         self.driver.find_element(*self.advancedsearch).click()
-        
-    def side_addbook(self):
+    
+    #contribute category
+    def side_addbook(self):   #clicking on add book on the sidebar
         self.driver.find_element(*self.sidebar_button).click()
         time.sleep(1)
         self.driver.find_element(*self.addbook).click()
         
-    def side_community_edits(self):
+    def side_community_edits(self):   #clicking on recent community edits on the sidebar
         self.driver.find_element(*self.sidebar_button).click()
         time.sleep(1)
         self.driver.find_element(*self.recentedits).click()
-        
-    def side_helpsupport(self):
+    
+    #resources category
+    def side_helpsupport(self):   #clicking on help & support on the sidebar
         self.driver.find_element(*self.sidebar_button).click()
         time.sleep(1)
         self.driver.find_element(*self.helpsupport).click()
         
-    def side_devcenter(self):
+    def side_devcenter(self):   #clicking on development center on the sidebar
         self.driver.find_element(*self.sidebar_button).click()
         time.sleep(1)
         self.driver.find_element(*self.devcenter).click()
         
-    def side_libportal(self):
+    def side_libportal(self):   #clicking on library portal on the sidebar
         self.driver.find_element(*self.sidebar_button).click()
         time.sleep(1)
         self.driver.find_element(*self.librarian_portal).click()

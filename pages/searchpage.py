@@ -15,27 +15,27 @@ class searchPage:
         self.ad_subject = (By.XPATH, "/html/body/div[4]/div[3]/form/fieldset[2]/div[4]/input")
         self.ad_search_button = (By.XPATH, "/html/body/div[4]/div[3]/form/button")
         
-    def searchbar(self, book_name):
+    def searchbar(self, book_name):   #types in bookname and clicks search button on the search bar
         self.driver.find_element(*self.searchbar_textbox).send_keys(book_name)
         time.sleep(1)
         self.driver.find_element(*self.searchbar_button).click()
         
-    def clearbar(self):
+    def clearbar(self):   #clears the searchbar
         self.driver.find_element(*self.searchbar_textbox).clear()
     
-    def clickby_href(self, href):
+    def clickby_href(self, href):   #looks for a displayed book via href element
         self.driver.find_element(By.CSS_SELECTOR, f"a[href='{href}']").click()
          
-    def click_barcode(self):
+    def click_barcode(self):   #clicks on the search by barcode button
         self.driver.find_element(*self.barcode_button).click()
     
-    def author(self, author):
+    def author(self, author):   #types in author textbox of advanced search
         self.driver.find_element(*self.ad_author).send_keys(author)
     
-    def subject(self, subject):
+    def subject(self, subject):   #types in subject textbox of advanced search
         self.driver.find_element(*self.ad_subject).send_keys(subject)    
         
-    def ad_search(self):
+    def ad_search(self):   #clicks on the search button present on the bottom of the advanced search page 
         self.driver.find_element(*self.ad_search_button).click()
     
     
