@@ -7,6 +7,7 @@ import pytest
 import time
 
 #import pages containing XPATH and function definitions
+#the pages are split on the basis of functionality and webpage sub-domain
 from pages.homepage import homePage
 from pages.login_page import loginPage
 from pages.signup_page import signupPage
@@ -14,15 +15,18 @@ from pages.searchpage import searchPage
 from pages.readbook import readBook
 from pages.sidebar import sidebarPage
 
-@pytest.fixture(scope="module")
+@pytest.fixture(scope="module")  #defines a fixture that is allowed to allocate and deallocate resources
+                                 #scope="module" ensures that the fixture is run once per module
 def driver(): #initialization for browser
     driver = webdriver.Chrome()
-    yield driver
+    yield driver #gives drivers the right to test functions and performs cleanup after the test completes.
     driver.quit()
     
+#please refer to the pages' files in regards to an explanation of what their called functions do    
+    
 def test_open_homepage(driver): #opening the openlibrary homepage
-    home_page = homePage(driver)
-    home_page.openpage("https://openlibrary.org/")
+    home_page = homePage(driver) 
+    home_page.openpage("https://openlibrary.org/") #url of our automation testing webpage
     driver.maximize_window()
     time.sleep(2)
     
@@ -63,12 +67,12 @@ def test_badlogin(driver, email, password):  #bad input parameters function for 
     
 def test_login(driver):   #function with valid input parameters, seperated from previous function to skip bad logins if desired
     login_page = loginPage(driver)
-    if(driver.title != "https://openlibrary.org/account/login"):
+    if(driver.title != "https://openlibrary.org/account/login"):  #checking if webpage is currently on login page
         {
                 homePage(driver).login()
         }
     time.sleep(1)
-    login_page.email("newabiki24@gmail.com")
+    login_page.email("newabiki24@gmail.com")    #please use your own test account email and password
     time.sleep(1)
     login_page.password("2024@zeta")
     time.sleep(1)
@@ -87,20 +91,20 @@ def test_navbar(driver):  #to test every elements present in the navigation bar 
     time.sleep(1)
     home_page.open_lists()
     time.sleep(1)
-    # home_page.open_collections()
-    # time.sleep(1)
+    home_page.open_collections()
+    time.sleep(1)
     home_page.open_k12()
     time.sleep(1)
     home_page.open_booktalks()
     time.sleep(4)
-    home_page.openpage("https://openlibrary.org/")
+    home_page.openpage("https://openlibrary.org/")  #navigating back via openpage due to being directed out of openlibrary domain
     time.sleep(1)
     home_page.open_randombook()
     time.sleep(1)
     home_page.open_advancedsearch()
     time.sleep(3)
     
-def test_barcode(driver):  #function to test functionality of the barcode search button
+def test_barcode(driver):  #function to test redirection functionality of the barcode search button
     search_page = searchPage(driver)
     search_page.click_barcode()
     time.sleep(5)
@@ -109,29 +113,30 @@ def test_barcode(driver):  #function to test functionality of the barcode search
     
 def test_footer(driver):  #to scroll all the way down to the footer in order to inspect footer elements then returning to the top
     home_page = homePage(driver)
-    page_height = driver.execute_script("return document.body.scrollHeight")
+    homePage(driver).openpage("https://openlibrary.org/")
+    page_height = driver.execute_script("return document.body.scrollHeight")  #getting the full webpage height
     scroll_speed = 800
-    scroll_iteration = int(page_height/scroll_speed)
+    scroll_iteration = int(page_height/scroll_speed)   #scrolling in steps for multiple iterations to prevent suspicious behaviour
     
     for _ in range(scroll_iteration):   
         driver.execute_script(f"window.scrollBy(0,{scroll_speed});")
         time.sleep(3)
         
     time.sleep(2)
-    home_page.returntotop()
+    home_page.returntotop()  #a functionality button present in the footer
     time.sleep(3)
     
 def test_searchbook(driver):  #to search for War and Peace book and inspect book details
     search_page = searchPage(driver)
     search_page.searchbar("War and Peace")
-    time.sleep(1)
-    search_page.clickby_href("/works/OL267171W/War_and_Peace?edition=key%3A/books/OL10276911M")
+    time.sleep(1)             #because there are multiple war and peace results, we are looking for the intended element via href
+    search_page.clickby_href("/works/OL267171W/War_and_Peace?edition=key%3A/books/OL10276911M") 
     time.sleep(3)
     page_height = driver.execute_script("return document.body.scrollHeight")
     
     scroll_speed = 400
     scroll_iteration = int(page_height/scroll_speed)
-    
+                                                      #another iterative scrolling to display all the book details
     for _ in range(scroll_iteration):   
         driver.execute_script(f"window.scrollBy(0,{scroll_speed});")
         time.sleep(2)
@@ -155,7 +160,7 @@ def test_borrowbook(driver):  #borrow and read the book war and peace
 
 def test_resize_window(driver):  #resize window dynamically
     home_page = homePage(driver)
-    driver.set_window_size(1024, 768)
+    driver.set_window_size(1024, 768)   #keyword to resize browser window size
     time.sleep(2)
     home_page.openlib()
     time.sleep(2)
@@ -212,7 +217,7 @@ def test_sidebar(driver):  #to run through all the button of the sidebar to test
     time.sleep(1)
     sidebar_page.side_booktalks()
     time.sleep(5)
-    homePage(driver).openpage("https://openlibrary.org/")
+    homePage(driver).openpage("https://openlibrary.org/") #navigating back via openpage due to being directed out of openlibrary domain
     time.sleep(3)
     sidebar_page.side_randombook()
     time.sleep(1)
@@ -233,7 +238,7 @@ def test_loggingout_from_mybooks(driver):  #to log out from my books page
     home_page = homePage(driver)
     home_page.open_mybooks()
     time.sleep(1)
-    sidebarPage(driver).side_logout()
+    sidebarPage(driver).side_logout()  #logging out via a button present on the sidebar
     time.sleep(1)
     driver.execute_script("window.scrollBy(0, 400);")
     time.sleep(5)
